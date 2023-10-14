@@ -4,8 +4,8 @@ input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
         if (Spieler == -1) {
             Spieler = 0
         }
-        zeichne()
         Kollision()
+        zeichne()
     }
 })
 function zeichne () {
@@ -16,6 +16,7 @@ function zeichne () {
 function Kollision () {
     if (Spieler == Stein && Steinhöhe == 4) {
         music.playMelody("C5 C - - - - - - ", 480)
+        Steinhöhe = 5
         Leben += -1
         if (Leben == 2) {
             basic.setLedColor(basic.rgb(0, 64, 0))
@@ -37,8 +38,8 @@ input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
         if (Spieler == 5) {
             Spieler = 4
         }
-        zeichne()
         Kollision()
+        zeichne()
     }
 })
 let Spieler = 0
@@ -63,7 +64,7 @@ basic.forever(function () {
         zeichne()
         Kollision()
         basic.pause(Schwierigkeit)
-        if (Steinhöhe == 5) {
+        if (Steinhöhe >= 5) {
             Stein = randint(0, 4)
             Steinhöhe = -1
             Schwierigkeit = Schwierigkeit * 0.9
