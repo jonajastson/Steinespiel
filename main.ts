@@ -27,9 +27,7 @@ function Kollision () {
             basic.setLedColor(basic.rgb(64, 0, 0))
         }
         if (Leben == -1) {
-            while (true) {
-                basic.showString("Game Over :(")
-            }
+            Spielzustand = 0
         }
     }
 }
@@ -55,17 +53,26 @@ Steinhöhe = -5
 let Schwierigkeit = 1000
 Spieler = 2
 basic.forever(function () {
-    Steinhöhe += 1
-    zeichne()
-    Kollision()
-    basic.pause(Schwierigkeit)
-    if (Steinhöhe == 5) {
-        Stein = randint(0, 4)
-        Steinhöhe = -1
-        Schwierigkeit = Schwierigkeit * 0.9
-        if (Schwierigkeit < 100) {
-            basic.showString("Level completed!")
-            Spielzustand = 2
+    if (Spielzustand == 0) {
+        while (true) {
+            basic.showString("Game Over :(")
         }
+    }
+    if (Spielzustand == 1) {
+        Steinhöhe += 1
+        zeichne()
+        Kollision()
+        basic.pause(Schwierigkeit)
+        if (Steinhöhe == 5) {
+            Stein = randint(0, 4)
+            Steinhöhe = -1
+            Schwierigkeit = Schwierigkeit * 0.9
+            if (Schwierigkeit < 100) {
+                Spielzustand = 2
+            }
+        }
+    }
+    if (Spielzustand == 2) {
+        basic.showString("Level completed!")
     }
 })
