@@ -1,7 +1,7 @@
 input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
     if (Spielzustand == 1) {
         Spieler += -1
-        if (Spieler == -1) {
+        if (Spieler == -2) {
             Spieler = 0
         }
         Kollision()
